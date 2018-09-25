@@ -22,26 +22,28 @@
 from pythonds.basic.stack import Stack
 
 def infixToPostfix(expression):
-    precedence = {'*': 3, '/': 3, '+': 2, '-': 2, '(': 1, ')': 1 }
-    newExpression = expression.replace(' ', '')
+    precedence = {'**':4, '^': 4, '*': 3, '/': 3, '+': 2, '-': 2, '(': 1, ')': 1 }
+    # newExpression = expression.replace(' ', '')
+    expList = expression.split(' ')
     opStack = Stack()
     output = []
 
-    for character in newExpression:
-        if character in precedence:
-            if character == '(':
-                opStack.push(character)
-            elif character == ')':
-                poppedChar = opStack.pop()
-                while poppedChar != '(':
-                    output.append(poppedChar)
-                    poppedChar = opStack.pop()
+    # for character in newExpression:
+    for item in expList:
+        if item in precedence:
+            if item == '(':
+                opStack.push(item)
+            elif item == ')':
+                poppedItem = opStack.pop()
+                while poppedItem != '(':
+                    output.append(poppedItem)
+                    poppedItem = opStack.pop()
             else:
-                while not opStack.isEmpty() and precedence.get(opStack.peek()) >= precedence.get(character):
+                while not opStack.isEmpty() and precedence.get(opStack.peek()) >= precedence.get(item):
                     output.append(opStack.pop())
-                opStack.push(character)
+                opStack.push(item)
         else:
-            output.append(character)
+            output.append(item)
     while not opStack.isEmpty():
         output.append(opStack.pop())
     return ' '.join(output)
@@ -56,26 +58,27 @@ def infixToPostfix(expression):
 #       Push the result back on the operandStack.
 # When the input expression has been completely processed, the result is on the stack. Pop the operandStack and return the value.
 def postfixEvaluation(postfix):
-    newPost = postfix.replace(' ', '')
-    operators = '*/+-()'
+    # newPost = postfix.replace(' ', '')
+    postList = postfix.split(' ')
+    operators = '**^//+-()'
     operandStack = Stack()
-    for character in newPost:
-        if character in operators:
+    # for character in newPost:
+    for item in postList:
+        if item in operators:
             secondOp = operandStack.pop()
             firstOp = operandStack.pop()
             result = 0
-            if character == '*':
+            if item == '*':
                 result = firstOp * secondOp
-            elif character == '/':
+            elif item == '**' or item == '^':
+                result = firstOp ** secondOp
+            elif item == '/':
                 result = firstOp / secondOp
-            elif character == '+':
+            elif item == '+':
                 result = firstOp + secondOp
-            elif character == '-':
+            elif item == '-':
                 result = firstOp - secondOp
             operandStack.push(result)
         else:
-            operandStack.push(int(character))
+            operandStack.push(int(item))
     return operandStack.pop()
-
-# postfixEvaluation('A B +')
-print(postfixEvaluation('4 5 6 * +'))
