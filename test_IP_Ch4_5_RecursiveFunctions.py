@@ -55,3 +55,4 @@ class test_RecursiveString(unittest.TestCase):
 
 if __name__ == '__main__':
     __main__ = unittest.main()
+    

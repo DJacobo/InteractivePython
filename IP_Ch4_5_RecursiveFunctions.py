@@ -7,9 +7,9 @@
 # Instead of declaring numString, just returns the values directly
 
 def numToBaseString(num, base):
+    alphanumeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     numString = ''
     if num < base:
-        alphanumeric = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         numString = alphanumeric[num]
     else:
         numString = numToBaseString(num // base, base) + numToBaseString(num % base, base)
