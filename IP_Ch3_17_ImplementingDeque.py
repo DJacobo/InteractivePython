@@ -1,3 +1,4 @@
+# Implementing a deque with a list means that adding and removing from rear are O(n) operations
 class Deque():
     def __init__(self):
         self.items = []
