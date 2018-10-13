@@ -71,5 +71,5 @@ def mergeLists(leftList, rightList):
 
 
 exList = [54, 26, 93, 17, 77, 31, 44, 55, 20]
-print(mergeSortNoSlice(exList, 0, len(exList)-1)) # TODO: Fix Merge Sort, it is broken
+print(mergeSortNoSlice(exList, 0, len(exList)-1)) # TODO: Fix MergeSortNoSlice, it is broken
 # print(mergeSort(exList))

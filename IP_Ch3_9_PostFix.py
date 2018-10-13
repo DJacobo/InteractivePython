@@ -20,8 +20,11 @@
 #   Any operators still on the stack can be removed and appended to the end of the output list.
 
 from pythonds.basic.stack import Stack
+from IP_Ch3_6_BalanceParentheses import balanceString
 
 def infixToPostfix(expression):
+    if not balanceString(expression):
+        raise SyntaxError('Parentheses are not balanced in the expression')
     precedence = {'**':4, '^': 4, '*': 3, '/': 3, '+': 2, '-': 2, '(': 1, ')': 1 }
     # newExpression = expression.replace(' ', '')
     expList = expression.split(' ')
@@ -82,3 +85,61 @@ def postfixEvaluation(postfix):
         else:
             operandStack.push(int(item))
     return operandStack.pop()
+
+
+# process infix tokens from left to right and use two stacks, one for operators and one for operands
+def infixEvaluation(expression):
+    if not balanceString(expression):
+        raise SyntaxError('Parentheses are not balanced in the expression')
+    postList = expression.split(' ')
+    precedence = {'**':4, '^': 4, '*': 3, '/': 3, '+': 2, '-': 2, '(': 1, ')': 1 }
+
+# PRAMP
+# Given a string:
+#     L is the letter,
+#     N is the Newspaper
+#     return True if L can be written entirely with N
+
+def loveLetter(L, N):
+    enoughLetters = True
+    if len(L) > len(L):
+        enoughLetters =  False
+    else:
+        lDict = {}
+        # Get all required characters from the letter, and their counts
+        for char in L:
+            char = char.lower()
+            if char == ' ':
+                continue
+            elif char in lDict:
+                lDict[char] = lDict[char] + 1
+            else:
+                lDict[char] = 1
+        
+        # In the newspaper, decrement the count of the dictionary
+        for char in N:
+            char = char.lower()
+            if char in lDict:
+                lDict[char] = lDict[char] - 1
+        
+        # If the set has any positive values, there are not enough letters in the newspaper
+        for key in lDict:
+            if lDict[key] > 0:
+                enoughLetters = False
+        return enoughLetters
+
+letter = 'Hello'
+letter2 = ''
+letter3 = 'iii'
+news = 'In the beginning there was a lonely wolf'
+news2 = 'ii ask dsak dsak'
+
+print(loveLetter(letter, news))
+print(loveLetter(letter, news2))
+
+print(loveLetter(letter2, news))
+print(loveLetter(letter2, news2))
+
+print(loveLetter(letter3, news))
+print(loveLetter(letter3, news2))
+IslandCount

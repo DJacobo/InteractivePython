@@ -34,8 +34,8 @@ def getCharacter(index):
     character = characterString[index]
     return character
 
-print('base: %s, num: %s, binary: %s' % (8, 25, baseToBinary(8, 25)))
-print('base: %s, num: %s, binary: %s' % (16, 256, baseToBinary(16, 256)))
-print('base: %s, num: %s, binary: %s' % (26, 26, baseToBinary(26, 26)))
+# print('base: %s, num: %s, binary: %s' % (8, 25, baseToBinary(8, 25)))
+# print('base: %s, num: %s, binary: %s' % (16, 256, baseToBinary(16, 256)))
+# print('base: %s, num: %s, binary: %s' % (26, 26, baseToBinary(26, 26)))
 # print('base: %s, num: %s, binary: %s' % (16, 10, baseToBinary(16, 10)))
 # print('base: %s, num: %s, binary: %s' % (16, 10, baseToBinary(16, 10)))
